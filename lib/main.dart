@@ -1,11 +1,9 @@
-import 'package:fallsa/screens/screensEN/MainMenu/nav.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'screens/home/login_screen.dart';
+import 'screens/screensEN/MainMenu/nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,15 +49,19 @@ class InitializerWidget extends StatefulWidget {
 
 class _InitializerWidgetState extends State<InitializerWidget> {
   bool isLoading = true;
-  String uid = "4";
+  String uid = '0';
   @override
   void initState() {
-    super.initState();
     // _auth = FirebaseAuth.instance;
     // var _auth;
     // _user = _auth.currentUser;
+
     getUID();
+
     isLoading = false;
+    Future.delayed(Duration(seconds: 2), () {
+      super.initState();
+    });
   }
 
   Future getUID() async {
@@ -68,36 +70,25 @@ class _InitializerWidgetState extends State<InitializerWidget> {
     var obtainUID = sharedPreferences.getString("uid");
     setState(() {
       uid = obtainUID!;
+      print(uid);
     });
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   // return LoginScreen();
-  //   if (isLoading) {
-  //     return const Scaffold(
-  //       body: Center(
-  //         child: CircularProgressIndicator(),
-  //       ),
-  //     );
-  //   } else {
-  //     // if (uid == null) {
-  //     return LoginScreen();
-  //     // } else {
-  //     //   return NavScreen();
-  //     // }
-  //   }
-  // }
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : uid == null
-            ? LoginScreen()
-            : NavScreen();
+    // return LoginScreen();
+    if (isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      if (uid == '0') {
+        return LoginScreen();
+      } else {
+        return NavScreen();
+      }
+    }
   }
 }

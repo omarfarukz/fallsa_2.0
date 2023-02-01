@@ -58,7 +58,7 @@ class TimerPageState extends State<FirstAttemptBM> {
   }
 
   void _stopFile() {
-    playerAudio?.stop();
+    playerAudio.stop();
     setState(() {
       audioIsOn = false;
     });
@@ -117,7 +117,7 @@ class TimerPageState extends State<FirstAttemptBM> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.fromLTRB(10, 15, 10, 15),
           textStyle: TextStyle(
             fontSize: 30,
@@ -240,7 +240,7 @@ class TimerTextState extends State<TimerText> {
   @override
   void dispose() {
     timer.cancel();
-    timer == null;
+    timer == 0;
     super.dispose();
   }
 

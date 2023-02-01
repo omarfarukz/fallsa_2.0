@@ -242,7 +242,7 @@ class TimerTextState extends State<TimerText> {
 
   @override
   void dispose() {
-    timer?.cancel();
+    timer.cancel();
     timer == 0;
     super.dispose();
   }
