@@ -1,8 +1,5 @@
 import 'package:fallsa/screens/screensBM/FallRiskTest/components/background.dart';
 import 'package:flutter/material.dart';
-import 'package:fallsa/screens/Login/login_screen.dart';
-
-import 'components/No Need/third_question_body.dart';
 import 'fourth_question.dart';
 
 class ThirdQuestionBM extends StatefulWidget {

@@ -59,7 +59,7 @@ class TimerPageState extends State<FirstAttempt> {
   }
 
   void _stopFile() {
-    playerAudio?.stop();
+    playerAudio.stop();
     setState(() {
       audioIsOn = false;
     });

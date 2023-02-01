@@ -33,7 +33,7 @@ class _FallRiskIntroductionState extends State<FallRiskIntroduction> {
   }
 
   void _stopFile() {
-    playerAudio?.stop();
+    playerAudio.stop();
     setState(() {
       audioIsOn = false;
     });
