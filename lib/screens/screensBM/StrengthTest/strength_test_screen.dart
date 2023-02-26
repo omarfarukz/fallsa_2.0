@@ -36,9 +36,7 @@ class _CountDownTimerState extends State<CountDownTimerBM>
   }
 
   TextEditingController score = TextEditingController();
-  // TextEditingController get score => null;
   bool donetest = false;
-
   final player = AudioCache();
 
   @override
@@ -46,12 +44,19 @@ class _CountDownTimerState extends State<CountDownTimerBM>
     super.initState();
     _audioCache = AudioCache(
       prefix: "audio/",
-      // fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
     );
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 30),
     );
+  }
+
+  final player2 = AudioPlayer();
+
+  void _playFile() {
+    setState(() {
+      player2.play(AssetSource('audio/my_audio.mp3'));
+    });
   }
 
   @override
@@ -90,10 +95,6 @@ class _CountDownTimerState extends State<CountDownTimerBM>
                                             ),
                                           )
 
-                                        //  STRoundedInputField(
-                                        //   score,
-                                        //   hintText: "Number of sit and stand",
-                                        //   inputType: STInputFieldType.score,
                                         // ),
                                         : TextFieldContainer(
                                             child: TextFormField(
@@ -227,11 +228,12 @@ class _CountDownTimerState extends State<CountDownTimerBM>
                                         builder: (context, child) {
                                           return FloatingActionButton.extended(
                                             onPressed: () {
-                                              // _audioCache.play('my_audio.mp3');
-                                              donetest = true;
-                                              // if (controller.isAnimating)
-                                              //   // controller.stop();
-                                              // else {
+                                              setState(() async {
+                                                donetest = await true;
+                                              });
+
+                                              _playFile();
+
                                               Future.delayed(
                                                   Duration(milliseconds: 1500),
                                                   () {
@@ -244,8 +246,6 @@ class _CountDownTimerState extends State<CountDownTimerBM>
                                                 print(
                                                     " This line is execute after 1 seconds");
                                               });
-
-                                              // }
                                             },
                                             backgroundColor: Colors.green[400],
                                             icon: Icon(

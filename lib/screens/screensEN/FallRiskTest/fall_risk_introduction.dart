@@ -20,24 +20,24 @@ class FallRiskIntroduction extends StatefulWidget {
 class _FallRiskIntroductionState extends State<FallRiskIntroduction> {
   late YoutubePlayerController _controller;
 
-  late AudioCache _audioCache;
-  late AudioPlayer playerAudio;
+  final player = AudioPlayer();
   bool audioIsOn = false;
 
-  void _playFile() async {
-    // playerAudio = await _audioCache.play('tugen.mp3'); // assign player here
-
+  void _playFile() {
     setState(() {
       audioIsOn = true;
+
+      player.play(AssetSource('audio/tugen.mp3'));
     });
   }
 
   void _stopFile() {
-    playerAudio.stop();
     setState(() {
       audioIsOn = false;
     });
+    player.stop();
     // stop the file like this
+    super.initState();
   }
 
   int _selectedIndex = 1;
@@ -57,16 +57,6 @@ class _FallRiskIntroductionState extends State<FallRiskIntroduction> {
         ),
       );
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // runYoutubePlayer();
-    _audioCache = AudioCache(
-      prefix: "audio/",
-      // fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
-    );
   }
 
   @override
@@ -390,7 +380,7 @@ class _FallRiskIntroductionState extends State<FallRiskIntroduction> {
                           icon: Icon(Icons.stop),
                           disabledColor: Colors.green[900],
                           iconSize: 48,
-                          onPressed: () {
+                          onPressed: () async {
                             _stopFile();
                           },
                         )
@@ -430,7 +420,9 @@ class _FallRiskIntroductionState extends State<FallRiskIntroduction> {
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   ),
                   onPressed: () {
-                    // _stopFile();
+                    Future.delayed(const Duration(milliseconds: 200), () {
+                      _stopFile();
+                    });
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

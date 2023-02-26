@@ -24,7 +24,6 @@ class _Quiz1ScreenState extends State<Quiz1Screen> {
   final Stream<QuerySnapshot> users =
       FirebaseFirestore.instance.collection('userDetails').snapshots();
 
-  @override
   _showdialog() {
     showDialog(
       context: context,
@@ -57,12 +56,14 @@ class _Quiz1ScreenState extends State<Quiz1Screen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text(
-              'Answer Again',
-              style: new TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            child: Center(
+              child: Text(
+                'Answer Again',
+                style: new TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -96,22 +97,6 @@ class _Quiz1ScreenState extends State<Quiz1Screen> {
 
   Widget build(BuildContext context) {
     user = FirebaseAuth.instance.currentUser;
-    CollectionReference data =
-        FirebaseFirestore.instance.collection('userDetails');
-    DocumentReference docReference = data.doc("a6Zto5xnPcP5WE6yLHzcRq4i9Qn1");
-
-    getData() {
-      FirebaseFirestore.instance
-          .collection('users')
-          .get()
-          .then((QuerySnapshot querySnapshot) {
-        querySnapshot.docs.forEach((doc) {
-          // print(doc["name"]);
-          String updatedData = doc["gander"];
-          print(updatedData);
-        });
-      });
-    }
 
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],

@@ -1,10 +1,5 @@
 import 'package:fallsa/screens/screensEN/FallRiskTest/components/background.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-
-
-import 'components/No Need/third_question_body.dart';
 import 'fifth_question.dart';
 
 class FourthQuestion extends StatefulWidget {
@@ -14,11 +9,11 @@ class FourthQuestion extends StatefulWidget {
   final int historyOfFall;
   final int worriedofFall;
   const FourthQuestion({
-     required this.fristAttamp,
+    required this.fristAttamp,
     required this.secondAttamp,
-     required this.walkingAid,
+    required this.walkingAid,
     required this.worriedofFall,
-     required this.historyOfFall,
+    required this.historyOfFall,
   });
   @override
   _FourthQuestionState createState() => _FourthQuestionState();

@@ -29,7 +29,8 @@ class QuizButtton extends StatelessWidget {
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0),
               ),
-              primary: Colors.green[400],
+              // primary: Colors.green[400],
+              backgroundColor: Colors.green[400],
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 12),
               textStyle: TextStyle(
                 fontSize: 24,

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fallsa/screens/screensEN/Quiz/1stQuiz/dialogButton.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,12 +57,8 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
     late String answer8;
 
     int correctAnswer = widget.correctAnswer;
-    int wrongAnswer = 0;
     bool _isSelected = false;
 
-    DateTime datetime = DateTime.now();
-
-    CollectionReference quiz1 = FirebaseFirestore.instance.collection('quiz1');
     @override
     _showdialog() {
       showDialog(
@@ -97,12 +92,14 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Answer Again',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Answer Again',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -135,6 +132,7 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
           actions: [
             TextButton(
               // color: Colors.green[400],
+              style: TextButton.styleFrom(backgroundColor: Colors.green[400]),
               onPressed: () {
                 // quiz1
                 //     .doc()
@@ -170,7 +168,6 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
         if (_isSelected == false) {
           correctAnswer++;
         }
-        wrongAnswer = 8 - correctAnswer;
         _showResult();
       } else if (answer8 == 'Staying at home') {
         _showdialog();

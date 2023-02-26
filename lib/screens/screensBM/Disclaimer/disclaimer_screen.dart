@@ -29,11 +29,13 @@ class _DisclaimerScreenState extends State<DisclaimerScreenBM> {
 
       final name = data['name'];
       final ic = data['ic'];
+      final gender = data['gander'];
       Future.delayed(Duration(seconds: 1), () async {
         final SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         sharedPreferences.setString("name", name.toString());
         sharedPreferences.setString("ic", ic.toString());
+        sharedPreferences.setString("gender", gender.toString());
       });
     });
   }

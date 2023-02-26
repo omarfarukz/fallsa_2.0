@@ -1,115 +1,71 @@
 import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:fallsa/screens/screensEN/FallRiskTest/components/background.dart';
 import 'package:fallsa/screens/screensEN/FallRiskTest/test_result.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'components/rounded_button_timer.dart';
-
-class ElapsedTime {
-  final int hundreds;
-  final int seconds;
-  final int minutes;
-
-  ElapsedTime({
-    required this.hundreds,
-    required this.seconds,
-    required this.minutes,
-  });
-}
-
-class Dependencies {
-  final List<ValueChanged<ElapsedTime>> timerListeners =
-      <ValueChanged<ElapsedTime>>[];
-  final TextStyle textStyle = const TextStyle(
-      fontSize: 50.0, fontFamily: "Bebas Neue", color: Colors.black);
-  final Stopwatch stopwatch = new Stopwatch();
-  final int timerMillisecondsRefreshRate = 30;
-}
 
 class SecondAttempt extends StatefulWidget {
   final double firstAttamp;
   final int walkingAid;
-  SecondAttempt({
-    required this.firstAttamp,
-    required this.walkingAid,
-  });
-
-  TimerPageState createState() => new TimerPageState();
+  const SecondAttempt(
+      {Key? key, required this.firstAttamp, required this.walkingAid})
+      : super(key: key);
+  @override
+  _SecondAttemptState createState() => _SecondAttemptState();
 }
 
-class TimerPageState extends State<SecondAttempt> {
-  final Dependencies dependencies = new Dependencies();
-
-  late AudioCache _audioCache;
-  late AudioPlayer playerAudio;
-  bool audioIsOn = false;
+class _SecondAttemptState extends State<SecondAttempt> {
   @override
   void initState() {
     super.initState();
-    _audioCache = AudioCache(
-      prefix: "audio/",
-      // fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
-    );
   }
 
-  void _playFile() async {
-    // playerAudio = await _audioCache.play('my_audio.mp3'); // assign player here
+  Stopwatch watch = Stopwatch();
+  late Timer timer;
+  bool startStop = true;
+  bool donetest = false;
 
+  String elapsedTime = '';
+
+  final player = AudioPlayer();
+  bool audioIsOn = false;
+
+  void _playFile() {
     setState(() {
       audioIsOn = true;
+
+      player.play(AssetSource('audio/my_audio.mp3'));
     });
   }
 
-  void _stopFile() {
-    playerAudio.stop();
-    setState(() {
-      audioIsOn = false;
-    });
-    // stop the file like this
-  }
-
-  bool donetest = true;
-
-  void leftButtonPressed() {
-    setState(() {
-      if (dependencies.stopwatch.isRunning) {
-        print("${dependencies.stopwatch.elapsedMilliseconds}");
-      } else {
-        dependencies.stopwatch.reset();
-        donetest = true;
-      }
-    });
-  }
-
-  void rightButtonPressed() {
-    setState(() {
-      if (dependencies.stopwatch.isRunning) {
-        dependencies.stopwatch.stop();
-        donetest = false;
-      } else {
-        dependencies.stopwatch.start();
-      }
-    });
+  updateTime(Timer timer) {
+    if (watch.isRunning) {
+      setState(() {
+        print("startstop Inside=$startStop");
+        elapsedTime = transformMilliSeconds(watch.elapsedMilliseconds);
+      });
+    }
   }
 
   Widget floatingActionButtonRound(String text, VoidCallback callback) {
-    TextStyle roundTextStyle = const TextStyle(
-        fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold);
-    dependencies.stopwatch.isRunning ? text = 'stop' : text = 'start';
+    // TextStyle roundTextStyle = const TextStyle(
+    //     fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold);
+    watch.isRunning ? text = 'stop' : text = 'start';
     return new IconButton(
-      // child: new Text(text, style: roundTextStyle),
       icon: Image.asset("assets/images/" + text + ".png"),
-      iconSize: 110,
+      iconSize: 140,
       onPressed: () {
         _playFile();
-        callback();
+        startOrStop();
       },
     );
   }
 
   Widget floatingActionButtonFlat(String text, VoidCallback callback) {
-    dependencies.stopwatch.isRunning ? text = 'Running' : text = 'Reset';
+    watch.isRunning ? text = 'Running' : text = 'Reset';
     TextStyle roundTextStyle = const TextStyle(
         fontSize: 22.0, color: Colors.white, fontWeight: FontWeight.bold);
     return new ElevatedButton(
@@ -119,8 +75,8 @@ class TimerPageState extends State<SecondAttempt> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          backgroundColor: Colors.red,
-          padding: EdgeInsets.fromLTRB(55, 15, 55, 15),
+          primary: Colors.red,
+          padding: EdgeInsets.fromLTRB(65, 15, 65, 15),
           textStyle: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
@@ -130,7 +86,7 @@ class TimerPageState extends State<SecondAttempt> {
 
   @override
   Widget build(BuildContext context) {
-    double firstAttamp = widget.firstAttamp;
+    // print('The gender inside widget: $gender');
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       body: Background(
@@ -138,15 +94,15 @@ class TimerPageState extends State<SecondAttempt> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 60, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
               child: Image.asset(
-                "assets/progressbar/twenty.png",
+                "assets/progressbar/ten.png",
                 width: 140,
               ),
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                 child: Text(
                   'Test',
                   style: TextStyle(
@@ -167,193 +123,110 @@ class TimerPageState extends State<SecondAttempt> {
               ),
             )),
             SizedBox(height: 20),
-            new TimerText(dependencies: dependencies),
-            SizedBox(height: 20),
-            // floatingActionButton(dependencies.stopwatch.isRunning ? "LAP" : "RESET", leftButtonPressed),
+            Text(elapsedTime, style: TextStyle(fontSize: 50.0)),
+            SizedBox(height: 20.0),
             floatingActionButtonRound(
-                dependencies.stopwatch.isRunning
+                watch.isRunning
                     ? "assets/images/stop.png"
                     : "assets/images/start.png",
-                rightButtonPressed),
-            SizedBox(height: 20),
+                startOrStop),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Align(
-                  alignment: Alignment.center,
-                  child: donetest
-                      ? Column()
-                      : RoundedButtonTimer(
-                          text: "Save",
-                          press: () {
-                            double secondAttamp = dependencies
-                                .stopwatch.elapsed.inSeconds
-                                .toDouble();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return TestResult(
-                                    fristAttamp: widget.firstAttamp,
-                                    secondAttamp: secondAttamp,
-                                    walkingAid: widget.walkingAid,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                ),
+                    alignment: Alignment.center,
+                    child: donetest
+                        ? RoundedButtonTimer(
+                            text: "Save",
+                            press: () {
+                              double secondAttamp =
+                                  watch.elapsed.inSeconds.toDouble();
+                              print(secondAttamp);
+
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return TestResult(
+                                      fristAttamp: widget.firstAttamp,
+                                      secondAttamp: secondAttamp,
+                                      walkingAid: widget.walkingAid,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          )
+                        : Column()),
                 SizedBox(width: 10),
                 floatingActionButtonFlat(
-                    dependencies.stopwatch.isRunning ? "Running" : "RESET",
-                    leftButtonPressed),
+                    watch.isRunning ? "Running" : "RESET", leftButtonPressed),
               ],
-            ),
+            )
           ],
         ),
       ),
     );
   }
-}
 
-class TimerText extends StatefulWidget {
-  TimerText({required this.dependencies});
-  final Dependencies dependencies;
-
-  TimerTextState createState() =>
-      new TimerTextState(dependencies: dependencies);
-}
-
-class TimerTextState extends State<TimerText> {
-  TimerTextState({required this.dependencies});
-  final Dependencies dependencies;
-  late Timer timer;
-  late int milliseconds;
-
-  @override
-  void initState() {
-    timer = new Timer.periodic(
-        new Duration(milliseconds: dependencies.timerMillisecondsRefreshRate),
-        callback);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    timer == 0;
-    super.dispose();
-  }
-
-  void callback(Timer timer) {
-    if (milliseconds != dependencies.stopwatch.elapsedMilliseconds) {
-      milliseconds = dependencies.stopwatch.elapsedMilliseconds;
-      final int hundreds = (milliseconds / 10).truncate();
-      final int seconds = (hundreds / 100).truncate();
-      final int minutes = (seconds / 60).truncate();
-      final ElapsedTime elapsedTime = new ElapsedTime(
-        hundreds: hundreds,
-        seconds: seconds,
-        minutes: minutes,
-      );
-      for (final listener in dependencies.timerListeners) {
-        listener(elapsedTime);
+  leftButtonPressed() {
+    setState(() {
+      if (watch.isRunning) {
+      } else {
+        watch.reset();
+        donetest = false;
+        setTime();
       }
+    });
+  }
+
+  startOrStop() {
+    if (startStop) {
+      startWatch();
+    } else {
+      stopWatch();
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        new RepaintBoundary(
-          child: new SizedBox(
-            height: 72.0,
-            child: new MinutesAndSeconds(dependencies: dependencies),
-          ),
-        ),
-        new RepaintBoundary(
-          child: new SizedBox(
-            height: 72.0,
-            child: new Hundreds(dependencies: dependencies),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class MinutesAndSeconds extends StatefulWidget {
-  MinutesAndSeconds({required this.dependencies});
-  final Dependencies dependencies;
-
-  MinutesAndSecondsState createState() =>
-      new MinutesAndSecondsState(dependencies: dependencies);
-}
-
-class MinutesAndSecondsState extends State<MinutesAndSeconds> {
-  MinutesAndSecondsState({required this.dependencies});
-  final Dependencies dependencies;
-
-  int minutes = 0;
-  int seconds = 0;
-
-  @override
-  void initState() {
-    dependencies.timerListeners.add(onTick);
-    super.initState();
+  startWatch() {
+    setState(() {
+      startStop = false;
+      donetest = false;
+      watch.start();
+      timer = Timer.periodic(Duration(milliseconds: 100), updateTime);
+    });
   }
 
-  void onTick(ElapsedTime elapsed) {
-    if (elapsed.minutes != minutes || elapsed.seconds != seconds) {
-      setState(() {
-        minutes = elapsed.minutes;
-        seconds = elapsed.seconds;
-      });
-    }
+  stopWatch() {
+    setState(() {
+      startStop = true;
+      donetest = true;
+      watch.stop();
+      setTime();
+    });
   }
 
-  @override
-  Widget build(BuildContext context) {
+  setTime() {
+    var timeSoFar = watch.elapsedMilliseconds;
+    setState(() {
+      elapsedTime = transformMilliSeconds(timeSoFar);
+    });
+  }
+
+  transformMilliSeconds(int milliseconds) {
+    int hundreds = (milliseconds / 10).truncate();
+    int seconds = (hundreds / 100).truncate();
+    int minutes = (seconds / 60).truncate();
+    // int hours = (minutes / 60).truncate();
+
+    // String hoursStr = (hours % 60).toString().padLeft(2, '0');
     String minutesStr = (minutes % 60).toString().padLeft(2, '0');
     String secondsStr = (seconds % 60).toString().padLeft(2, '0');
-    return new Text('$minutesStr:$secondsStr.', style: dependencies.textStyle);
-  }
-}
 
-class Hundreds extends StatefulWidget {
-  Hundreds({required this.dependencies});
-  final Dependencies dependencies;
-
-  HundredsState createState() => new HundredsState(dependencies: dependencies);
-}
-
-class HundredsState extends State<Hundreds> {
-  HundredsState({required this.dependencies});
-  final Dependencies dependencies;
-
-  int hundreds = 0;
-
-  @override
-  void initState() {
-    dependencies.timerListeners.add(onTick);
-    super.initState();
-  }
-
-  void onTick(ElapsedTime elapsed) {
-    if (elapsed.hundreds != hundreds) {
-      setState(() {
-        hundreds = elapsed.hundreds;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    String hundredsStr = (hundreds % 100).toString().padLeft(2, '0');
-    return new Text(hundredsStr, style: dependencies.textStyle);
+    return "$minutesStr:$secondsStr";
   }
 }

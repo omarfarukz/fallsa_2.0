@@ -1,5 +1,4 @@
 import 'package:fallsa/screens/screensEN/Quiz/2ndQuiz/quiz8.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/quizbutton.dart';
@@ -35,10 +34,8 @@ class Quiz7Screen extends StatefulWidget {
 class _Quiz7ScreenState extends State<Quiz7Screen> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
     // int wrongAnswer = widget.wongAnswer;
-    String answer7;
 
     bool _isSelected = false;
 
@@ -129,7 +126,6 @@ class _Quiz7ScreenState extends State<Quiz7Screen> {
                               QuizButtton(
                                 text: 'Turn sideways',
                                 function: () {
-                                  answer7 = 'Turn sideways';
                                   _isSelected = true;
                                   screen8();
                                 },
@@ -137,7 +133,6 @@ class _Quiz7ScreenState extends State<Quiz7Screen> {
                               QuizButtton(
                                 text: 'Hop across it',
                                 function: () {
-                                  answer7 = 'Hop across it';
                                   _isSelected = true;
                                   screen8();
                                 },
@@ -145,7 +140,6 @@ class _Quiz7ScreenState extends State<Quiz7Screen> {
                               QuizButtton(
                                 text: 'Remove clutter permanently',
                                 function: () {
-                                  answer7 = 'Remove clutter permanently';
                                   screen8();
                                 },
                               ),

@@ -1,5 +1,4 @@
 import 'package:fallsa/screens/screensEN/Quiz/1stQuiz/quiz7.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/quizbutton.dart';
@@ -31,7 +30,6 @@ class Quiz6Screen extends StatefulWidget {
 class _Quiz6ScreenState extends State<Quiz6Screen> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
     // var wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
@@ -71,12 +69,14 @@ class _Quiz6ScreenState extends State<Quiz6Screen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Answer Again',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Answer Again',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

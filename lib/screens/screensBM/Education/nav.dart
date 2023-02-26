@@ -4,8 +4,6 @@ import '../../screensEN/Education/education_video_screen_first.dart';
 import '../../screensEN/MainMenu/menue_screen.dart';
 
 class NavEducationScreen extends StatefulWidget {
-  //const MainScreen({ Key? key }) : super(key: key);
-
   @override
   _NavEducationScreen createState() => _NavEducationScreen();
 }

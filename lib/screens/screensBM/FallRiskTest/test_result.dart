@@ -148,35 +148,26 @@ class TimerPageState extends State<TestResultBM> {
   void initState() {
     getUID();
     readGender();
-    // uploadData();
-
     CollectionReference fallRisk =
         FirebaseFirestore.instance.collection('fallRisk');
-    super.initState();
+    graphinit();
+    Future.delayed(const Duration(milliseconds: 1), () {
+      super.initState();
+    });
   }
 
-  // uploadData() async {
-  //   final SharedPreferences sharedPreferences =
-  //   await SharedPreferences.getInstance();
-  //   CollectionReference fallRisk =
-  //   FirebaseFirestore.instance.collection('fallRisk');
-  //   setState(() {
-  //     final ic = sharedPreferences.getString("ic");
-  //     final name = sharedPreferences.getString("name");
-  //
-  //     Future.delayed(Duration(seconds: 2), () {
-  //       fallRisk.doc().set({
-  //         'dUid': "Not assign yet",
-  //         'dateTime': DateTime.now(),
-  //         'ic': ic.toString(),
-  //         'name': name.toString(),
-  //         'uid': uid.toString(),
-  //         'score': finalScore,
-  //         'risk': riskStatus.toString(),
-  //       });
-  //     });
-  //   });
-  // }
+  String graph = 'lelaki';
+  void graphinit() {
+    if (gender == 'Male') {
+      setState(() {
+        graph = 'lelaki';
+      });
+    } else if (gender == 'Female') {
+      setState(() {
+        graph = 'perempuan';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,19 +222,7 @@ class TimerPageState extends State<TestResultBM> {
     } else if (avarage > 16) {
       y_axis = 202;
     }
-    late String graph;
-    int gend = 0;
-    if (gender == 'Male') {
-      setState(() {
-        graph = 'lelaki';
-        gend = 0;
-      });
-    } else if (gender == 'Female') {
-      setState(() {
-        graph = 'perempuan';
-        gend = 1;
-      });
-    }
+
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       body: Container(

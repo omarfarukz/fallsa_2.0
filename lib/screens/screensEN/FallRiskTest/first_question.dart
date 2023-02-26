@@ -1,6 +1,6 @@
-
 import 'package:fallsa/screens/screensEN/FallRiskTest/components/background.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fallRIskVideo.dart';
 
@@ -11,11 +11,26 @@ class FirstQuestion extends StatefulWidget {
 
 class _FirstQuestionState extends State<FirstQuestion> {
   late int walkingAid;
+  String gender = 'No Data';
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 1), () async {
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      setState(() {
+        gender = sharedPreferences.getString("gender")!;
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // final _formKey = useMemoized(() => GlobalKey<FormState>());
     // final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final Size size = MediaQuery.of(context).size;
+    print(' I am the $gender');
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       body: Background(
@@ -74,6 +89,7 @@ class _FirstQuestionState extends State<FirstQuestion> {
                             MaterialPageRoute(
                               builder: (context) => FallRiskVideo(
                                 walkingAid: walkingAid,
+                                // gender: gender,
                               ),
                             ),
                           );
@@ -91,14 +107,13 @@ class _FirstQuestionState extends State<FirstQuestion> {
                               EdgeInsets.fromLTRB(65, 15, 65, 15)),
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.red[400]!),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side:
-                                          BorderSide(color: Colors.red[800]!)))),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.red[400]!),
+                          shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.red[800]!)))),
                       onPressed: () {
                         setState(() {
                           walkingAid = 0;

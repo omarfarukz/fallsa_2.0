@@ -1,5 +1,4 @@
 import 'package:fallsa/screens/screensEN/Quiz/1stQuiz/quiz3.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../components/quizbutton.dart';
 
@@ -60,12 +59,14 @@ class _Quiz2ScreenState extends State<Quiz2Screen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Answer Again',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Answer Again',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

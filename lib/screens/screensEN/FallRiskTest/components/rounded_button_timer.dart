@@ -22,10 +22,8 @@ class RoundedButtonTimer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
-          // padding: EdgeInsets.fromLTRB(55, 15, 55, 15),
-          // color: Colors.green[400],
           style: TextButton.styleFrom(
-              foregroundColor: Colors.green[400],
+              backgroundColor: Colors.green[400],
               padding: const EdgeInsets.fromLTRB(55, 15, 55, 15)),
           onPressed: press,
           child: Text(

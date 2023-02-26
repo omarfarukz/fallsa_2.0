@@ -5,23 +5,6 @@ import 'package:fallsa/screens/screensEN/StrengthTest/report_strength_test.dart'
 import 'package:flutter/material.dart';
 
 import '../../components/text_field_container.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountDownTimer(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        accentColor: Colors.red,
-      ),
-    );
-  }
-}
 
 class CountDownTimer extends StatefulWidget {
   @override
@@ -31,14 +14,12 @@ class CountDownTimer extends StatefulWidget {
 class _CountDownTimerState extends State<CountDownTimer>
     with TickerProviderStateMixin {
   late AnimationController controller;
-  late AudioCache _audioCache;
   String get timerString {
     Duration duration = controller.duration! * controller.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   TextEditingController score = TextEditingController();
-  // TextEditingController get score => null;
   bool donetest = false;
 
   final player = AudioCache();
@@ -46,14 +27,18 @@ class _CountDownTimerState extends State<CountDownTimer>
   @override
   void initState() {
     super.initState();
-    _audioCache = AudioCache(
-      prefix: "audio/",
-      // fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
-    );
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 30),
     );
+  }
+
+  final player2 = AudioPlayer();
+
+  void _playFile() {
+    setState(() {
+      player2.play(AssetSource('audio/my_audio.mp3'));
+    });
   }
 
   @override
@@ -91,12 +76,6 @@ class _CountDownTimerState extends State<CountDownTimer>
                                               textAlign: TextAlign.center,
                                             ),
                                           )
-
-                                        //  STRoundedInputField(
-                                        //   score,
-                                        //   hintText: "Number of sit and stand",
-                                        //   inputType: STInputFieldType.score,
-                                        // ),
                                         : TextFieldContainer(
                                             child: TextFormField(
                                               enabled: true,
@@ -166,7 +145,8 @@ class _CountDownTimerState extends State<CountDownTimer>
                                                     new BorderRadius.circular(
                                                         20.0),
                                               ),
-                                              primary: Colors.green[400],
+                                              backgroundColor:
+                                                  Colors.green[400],
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 30, vertical: 10),
                                               textStyle: TextStyle(
@@ -229,11 +209,12 @@ class _CountDownTimerState extends State<CountDownTimer>
                                         builder: (context, child) {
                                           return FloatingActionButton.extended(
                                             onPressed: () {
-                                              // _audioCache.play('my_audio.mp3');
-                                              donetest = true;
-                                              // if (controller.isAnimating)
-                                              //   // controller.stop();
-                                              // else {
+                                              setState(() {
+                                                donetest = true;
+                                              });
+
+                                              _playFile();
+
                                               Future.delayed(
                                                   Duration(milliseconds: 1500),
                                                   () {
