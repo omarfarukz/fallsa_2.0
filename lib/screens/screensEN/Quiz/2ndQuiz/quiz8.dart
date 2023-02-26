@@ -76,9 +76,6 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
     int quiz1Score = widget.quiz1Score;
     DateTime dateTime = DateTime.now();
 
-    int wrongAnswer = 0;
-
-    String answer8;
     CollectionReference quiz2 = FirebaseFirestore.instance.collection('quiz');
     _showdialog() {
       showDialog(
@@ -90,6 +87,7 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
           actions: [
             TextButton(
                 // color: Colors.green[300],
+                style: TextButton.styleFrom(backgroundColor: Colors.green[300]),
                 onPressed: () {
                   quiz2
                       .doc()
@@ -125,7 +123,6 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
       if (_isSelected == false) {
         correctAnswer++;
       }
-      wrongAnswer = 8 - correctAnswer;
       _showdialog();
     }
 
@@ -195,7 +192,6 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
                             QuizButtton(
                               text: 'Staying at home',
                               function: () {
-                                answer8 = 'Staying at home';
                                 _isSelected = true;
                                 navScreen();
                               },
@@ -203,15 +199,12 @@ class _Quiz8ScreenState extends State<Quiz8Screen> {
                             QuizButtton(
                               text: 'Exercising regularly',
                               function: () {
-                                answer8 = 'Exercising regularly';
                                 navScreen();
                               },
                             ),
                             QuizButtton(
                               text: 'Avoiding movements and physical activity',
                               function: () {
-                                answer8 =
-                                    'Avoiding movements and physical activity';
                                 _isSelected = true;
                                 navScreen();
                               },

@@ -156,29 +156,6 @@ class TimerPageState extends State<TestResult> {
     super.initState();
   }
 
-  // uploadData() async {
-  //   final SharedPreferences sharedPreferences =
-  //   await SharedPreferences.getInstance();
-  //   CollectionReference fallRisk =
-  //   FirebaseFirestore.instance.collection('fallRisk');
-  //   setState(() {
-  //     final ic = sharedPreferences.getString("ic");
-  //     final name = sharedPreferences.getString("name");
-  //
-  //     Future.delayed(Duration(seconds: 2), () {
-  //       fallRisk.doc().set({
-  //         'dUid': "Not assign yet",
-  //         'dateTime': DateTime.now(),
-  //         'ic': ic.toString(),
-  //         'name': name.toString(),
-  //         'uid': uid.toString(),
-  //         'score': finalScore,
-  //         'risk': riskStatus.toString(),
-  //       });
-  //     });
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     double fristAttamp = widget.fristAttamp;
@@ -232,7 +209,7 @@ class TimerPageState extends State<TestResult> {
     } else if (avarage > 16) {
       y_axis = 202;
     }
-    late String graph;
+    String graph = 'male';
     int gend = 0;
     if (gender == 'Male') {
       setState(() {

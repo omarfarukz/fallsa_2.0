@@ -1,26 +1,12 @@
 import 'package:fallsa/screens/screensEN/Quiz/1stQuiz/quiz6.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/quizbutton.dart';
 
 class Quiz5Screen extends StatefulWidget {
-  // final answer1;
-  // final answer2;
-  // final answer3;
-  // final answer4;
   final correctAnswer;
-  // final int wrongAnswer;
 
-  const Quiz5Screen(
-      {Key? key,
-      // this.answer1,
-      // this.answer2,
-      // this.answer3,
-      // this.answer4,
-      // this.wrongAnswer,
-      this.correctAnswer})
-      : super(key: key);
+  const Quiz5Screen({Key? key, this.correctAnswer}) : super(key: key);
 
   @override
   _Quiz5ScreenState createState() => _Quiz5ScreenState();
@@ -29,7 +15,6 @@ class Quiz5Screen extends StatefulWidget {
 class _Quiz5ScreenState extends State<Quiz5Screen> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
     // var wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
@@ -68,12 +53,14 @@ class _Quiz5ScreenState extends State<Quiz5Screen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Answer Again',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Answer Again',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

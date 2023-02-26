@@ -85,7 +85,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime;
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       body: BackgroundGeneral(
@@ -267,7 +266,8 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(20.0),
                 ),
-                primary: Colors.green[400],
+                // primary: Colors.green[400],
+                backgroundColor: Colors.green[400],
                 padding: EdgeInsets.symmetric(horizontal: 120, vertical: 15),
               ),
             ),

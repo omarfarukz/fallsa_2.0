@@ -11,8 +11,6 @@ class CarouselWithDotsPage extends StatefulWidget {
 }
 
 class _CarouselWithDotsPageState extends State<CarouselWithDotsPage> {
-  int _current = 0;
-
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = widget.imgList
@@ -122,9 +120,7 @@ class _CarouselWithDotsPageState extends State<CarouselWithDotsPage> {
               enlargeCenterPage: true,
               aspectRatio: 3,
               onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
+                setState(() {});
               }),
         ),
         // Row(

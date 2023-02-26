@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/home/login_screen.dart';
 import 'screens/screensEN/MainMenu/nav.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +12,32 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  @override
+  void initState() {
+    requestPermission();
+    super.initState();
+  }
+
+  void requestPermission() async {
+    var status = await Permission.audio.status;
+
+    if (!status.isGranted) {
+      await Permission.audio.request();
+    }
+  }
+  // void requestPermission2()async{
+  //   var status2=await Permission.
+  // }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -52,12 +75,7 @@ class _InitializerWidgetState extends State<InitializerWidget> {
   String uid = '0';
   @override
   void initState() {
-    // _auth = FirebaseAuth.instance;
-    // var _auth;
-    // _user = _auth.currentUser;
-
     getUID();
-
     isLoading = false;
     Future.delayed(Duration(seconds: 2), () {
       super.initState();
@@ -76,7 +94,6 @@ class _InitializerWidgetState extends State<InitializerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // return LoginScreen();
     if (isLoading) {
       return const Scaffold(
         body: Center(

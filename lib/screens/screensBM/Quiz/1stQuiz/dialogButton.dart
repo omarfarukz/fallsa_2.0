@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DialogButton extends StatelessWidget {
@@ -9,7 +8,14 @@ class DialogButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(text,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24,backgroundColor: Colors.green[300]),),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            // backgroundColor: Colors.green[300],
+            color: Colors.black),
+      ),
     );
   }
 }

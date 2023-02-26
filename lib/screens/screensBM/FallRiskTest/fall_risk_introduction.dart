@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../MainMenu/nav.dart';
 import 'first_attempt.dart';
 
@@ -17,26 +15,24 @@ class FallRiskIntroductionBM extends StatefulWidget {
 }
 
 class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
-  late AudioCache _audioCache;
-  late AudioPlayer playerAudio;
   bool audioIsOn = false;
   late YoutubePlayerController _controller;
-
-  void _playFile() async {
-    // playerAudio = await _audioCache.play('tugbm.mp3'); // assign player here
-    // playerAudio = await _audioCache.loadAsFile('tugbm.mp3');
-
+  final player = AudioPlayer();
+  void _playFile() {
     setState(() {
       audioIsOn = true;
+
+      player.play(AssetSource('audio/tugbm.mp3'));
     });
   }
 
   void _stopFile() {
-    playerAudio.stop();
     setState(() {
       audioIsOn = false;
     });
+    player.stop();
     // stop the file like this
+    super.initState();
   }
 
   int _selectedIndex = 1;
@@ -56,16 +52,6 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
         ),
       );
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _audioCache = AudioCache(
-      prefix: "audio/",
-      // fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
-    );
   }
 
   @override
@@ -415,7 +401,7 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
                           icon: Icon(Icons.stop),
                           disabledColor: Colors.green[900],
                           iconSize: 48,
-                          onPressed: () {
+                          onPressed: () async {
                             _stopFile();
                           },
                         )
@@ -423,7 +409,7 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
                           icon: Icon(Icons.volume_up_sharp),
                           disabledColor: Colors.green[900],
                           iconSize: 48,
-                          onPressed: () {
+                          onPressed: () async {
                             _playFile();
                           },
                         ),
@@ -454,7 +440,9 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   ),
                   onPressed: () {
-                    _stopFile();
+                    Future.delayed(const Duration(milliseconds: 200), () {
+                      _stopFile();
+                    });
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

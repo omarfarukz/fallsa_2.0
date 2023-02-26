@@ -1,5 +1,4 @@
 import 'package:fallsa/screens/screensEN/Quiz/2ndQuiz/quiz7.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/quizbutton.dart';
@@ -33,12 +32,9 @@ class Quiz6Screen extends StatefulWidget {
 class _Quiz6ScreenState extends State<Quiz6Screen> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
     // var wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
-
-    String answer6;
 
     screen7() {
       if (_isSelected == false) {
@@ -125,14 +121,12 @@ class _Quiz6ScreenState extends State<Quiz6Screen> {
                             QuizButtton(
                               text: 'Install grab bars in the bathroom',
                               function: () {
-                                answer6 = 'Install grab bars in the bathroom';
                                 screen7();
                               },
                             ),
                             QuizButtton(
                               text: 'Move to a new house',
                               function: () {
-                                answer6 = 'Move to a new house';
                                 _isSelected = true;
                                 screen7();
                               },
@@ -140,7 +134,6 @@ class _Quiz6ScreenState extends State<Quiz6Screen> {
                             QuizButtton(
                               text: 'Use a doormat',
                               function: () {
-                                answer6 = 'Use a doormat';
                                 _isSelected = true;
                                 screen7();
                               },

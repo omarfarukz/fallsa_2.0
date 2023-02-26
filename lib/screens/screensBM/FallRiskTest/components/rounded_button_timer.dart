@@ -23,7 +23,7 @@ class RoundedButtonTimer extends StatelessWidget {
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
           style: TextButton.styleFrom(
-            padding: EdgeInsets.fromLTRB(65, 15, 65, 15),
+            padding: EdgeInsets.fromLTRB(50, 15, 50, 15),
             backgroundColor: Colors.green[400],
           ),
           onPressed: press,

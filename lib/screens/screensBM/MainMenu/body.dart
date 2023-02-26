@@ -1,4 +1,5 @@
 import 'package:fallsa/screens/screensBM/Education/education_video_screen_first.dart';
+import 'package:fallsa/screens/screensBM/FallRiskTest/first_question.dart';
 import 'package:fallsa/screens/screensBM/PastResult/past_result.dart';
 import 'package:fallsa/screens/screensBM/StrengthTest/strength_test_video_introduction.dart';
 import 'package:flutter/material.dart';
@@ -144,12 +145,12 @@ class BodyBM extends HookWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => FirstQuestionBM(),
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FirstQuestionBM(),
+                                    ),
+                                  );
                                 },
                                 child: Column(
                                   children: [

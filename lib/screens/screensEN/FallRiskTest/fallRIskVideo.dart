@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -7,7 +6,12 @@ import 'fall_risk_introduction.dart';
 
 class FallRiskVideo extends StatefulWidget {
   final int walkingAid;
-  FallRiskVideo({Key? key, required this.walkingAid}) : super(key: key);
+  // final String gender;
+  FallRiskVideo({
+    Key? key,
+    required this.walkingAid,
+    // required this.gender,
+  }) : super(key: key);
 
   @override
   State<FallRiskVideo> createState() => _FallRiskVideoState();
@@ -73,7 +77,6 @@ class _FallRiskVideoState extends State<FallRiskVideo> {
               children: [
                 // SizedBox(height: size.height * 0.06),
                 Stack(
-                  
                   children: <Widget>[
                     Image.asset(
                       "assets/images/green_top.png",

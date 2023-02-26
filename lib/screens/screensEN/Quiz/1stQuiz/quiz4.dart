@@ -2,7 +2,6 @@ import 'package:fallsa/screens/screensEN/Quiz/1stQuiz/quiz5.dart';
 import 'package:flutter/material.dart';
 
 import '../components/quizbutton.dart';
-import 'dialogButton.dart';
 
 class Quiz4Screen extends StatefulWidget {
   // final answer1;
@@ -64,12 +63,14 @@ class _Quiz4ScreenState extends State<Quiz4Screen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Answer Again',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Answer Again',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

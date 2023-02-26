@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:fallsa/screens/screensEN/StrengthTest/report_strength_test.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +49,6 @@ class ReportState extends State<ReportST> {
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[];
   void _onItemTapped(int index) {
     if (_selectedIndex == 0) {
       setState(() {
@@ -88,8 +86,6 @@ class ReportState extends State<ReportST> {
   }
 
   Widget floatingActionButtonRound(String text, VoidCallback callback) {
-    TextStyle roundTextStyle = const TextStyle(
-        fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold);
     dependencies.stopwatch.isRunning ? text = 'stop' : text = 'start';
     return new IconButton(
       // child: new Text(text, style: roundTextStyle),
@@ -110,7 +106,8 @@ class ReportState extends State<ReportST> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
+          // primary: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
           textStyle: TextStyle(
             fontSize: 30,
@@ -263,9 +260,6 @@ class ReportState extends State<ReportST> {
       });
     }
 
-    // call the age from db
-    // declare x_axis based on age
-
     late double x_axis;
     if (currentAge < 60) {
       x_axis = 320;
@@ -280,8 +274,6 @@ class ReportState extends State<ReportST> {
     } else if (currentAge >= 80) {
       x_axis = 30;
     }
-    // declare y_axis based on score
-    // navigate score from countdown page
 
     String hold = widget.score;
     double score = double.parse(hold);
@@ -467,9 +459,9 @@ class TimerTextState extends State<TimerText> {
 
   @override
   void dispose() {
+    super.dispose();
     timer.cancel();
     timer = null!;
-    super.dispose();
   }
 
   void callback(Timer timer) {
