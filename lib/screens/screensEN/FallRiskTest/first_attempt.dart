@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../../screensBM/FallRiskTest/components/background.dart';
 import '../../screensBM/FallRiskTest/components/rounded_button_timer.dart';
-import '../../screensBM/FallRiskTest/second_attempt.dart';
 
 class FirstAttempt extends StatefulWidget {
   final int walkingAid;
@@ -69,7 +68,7 @@ class _FirstAttemptState extends State<FirstAttempt> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(160),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.fromLTRB(65, 15, 65, 15),
           textStyle: TextStyle(
             fontSize: 30,

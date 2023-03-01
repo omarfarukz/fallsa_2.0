@@ -150,9 +150,6 @@ class TimerPageState extends State<TestResult> {
     getUID();
     readGender();
     // uploadData();
-
-    CollectionReference fallRisk =
-        FirebaseFirestore.instance.collection('fallRisk');
     super.initState();
   }
 

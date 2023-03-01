@@ -2,24 +2,7 @@ import 'dart:math' as math;
 import 'package:fallsa/screens/components/text_field_container.dart';
 import 'package:fallsa/screens/screensBM/StrengthTest/report_strength_test.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:audioplayers/audioplayers.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountDownTimerBM(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        accentColor: Colors.red,
-      ),
-    );
-  }
-}
 
 class CountDownTimerBM extends StatefulWidget {
   @override
@@ -29,7 +12,7 @@ class CountDownTimerBM extends StatefulWidget {
 class _CountDownTimerState extends State<CountDownTimerBM>
     with TickerProviderStateMixin {
   late AnimationController controller;
-  late AudioCache _audioCache;
+
   String get timerString {
     Duration duration = controller.duration! * controller.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -37,14 +20,10 @@ class _CountDownTimerState extends State<CountDownTimerBM>
 
   TextEditingController score = TextEditingController();
   bool donetest = false;
-  final player = AudioCache();
 
   @override
   void initState() {
     super.initState();
-    _audioCache = AudioCache(
-      prefix: "audio/",
-    );
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 30),
@@ -94,8 +73,6 @@ class _CountDownTimerState extends State<CountDownTimerBM>
                                               textAlign: TextAlign.center,
                                             ),
                                           )
-
-                                        // ),
                                         : TextFieldContainer(
                                             child: TextFormField(
                                               enabled: true,
@@ -228,14 +205,14 @@ class _CountDownTimerState extends State<CountDownTimerBM>
                                         builder: (context, child) {
                                           return FloatingActionButton.extended(
                                             onPressed: () {
-                                              setState(() async {
-                                                donetest = await true;
+                                              setState(() {
+                                                donetest = true;
                                               });
 
                                               _playFile();
 
                                               Future.delayed(
-                                                  Duration(milliseconds: 1500),
+                                                  Duration(milliseconds: 1),
                                                   () {
                                                 controller.reverse(
                                                     from:

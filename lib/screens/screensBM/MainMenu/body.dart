@@ -46,6 +46,7 @@ class BodyBM extends HookWidget {
                             onPressed: () {
                               style:
                               TextStyle(fontSize: 25);
+
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

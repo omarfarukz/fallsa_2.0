@@ -20,7 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
   @override
   void initState() {
     requestPermission();
@@ -34,9 +33,6 @@ class _MyAppState extends State<MyApp> {
       await Permission.audio.request();
     }
   }
-  // void requestPermission2()async{
-  //   var status2=await Permission.
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter',
+          title: 'FallSA',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,

@@ -1,7 +1,5 @@
-
 import 'package:fallsa/screens/screensEN/FallRiskTest/components/background.dart';
 import 'package:fallsa/screens/screensEN/FallRiskTest/third_question.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SecondQuestion extends StatefulWidget {
@@ -81,7 +79,7 @@ class _SecondQuestionState extends State<SecondQuestion> {
                         MaterialPageRoute(
                           builder: (context) => ThirdQuestion(
                             firstAttemp: widget.fristAttamp,
-                            seceondAttemp:widget.secondAttamp,
+                            seceondAttemp: widget.secondAttamp,
                             worriedOfFall: worriedOfFall,
                             walkingAid: widget.walkingAid,
                           ),
@@ -106,7 +104,8 @@ class _SecondQuestionState extends State<SecondQuestion> {
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.red[800]!)))),
+                                    side:
+                                        BorderSide(color: Colors.red[800]!)))),
                     onPressed: () {
                       worriedOfFall = 0;
                       Navigator.pushReplacement(

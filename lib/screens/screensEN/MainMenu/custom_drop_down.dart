@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-
 class CustomDropDown extends StatefulWidget {
   final List<String> options;
   final String title;
@@ -22,8 +20,6 @@ class CustomDropDown extends StatefulWidget {
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Container(
         //width: size.width * 0.90,
         decoration: BoxDecoration(

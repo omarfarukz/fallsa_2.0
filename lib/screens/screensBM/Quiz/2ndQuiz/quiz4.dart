@@ -26,7 +26,6 @@ class Quiz4ScreenBM2 extends StatefulWidget {
 class _Quiz4ScreenState extends State<Quiz4ScreenBM2> {
   @override
   Widget build(BuildContext context) {
-    String answer4;
     var correctAnswer = widget.correctAnswer;
     // var wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
@@ -121,14 +120,12 @@ class _Quiz4ScreenState extends State<Quiz4ScreenBM2> {
                             QuizButtton(
                               text: 'Ya',
                               function: () {
-                                answer4 = 'Yes';
                                 screen5();
                               },
                             ),
                             QuizButtton(
                               text: 'Tidak',
                               function: () {
-                                answer4 = 'No';
                                 _isSelected = true;
                                 screen5();
                               },
@@ -136,7 +133,6 @@ class _Quiz4ScreenState extends State<Quiz4ScreenBM2> {
                             QuizButtton(
                               text: 'Tidak tahu',
                               function: () {
-                                answer4 = 'Don\'t Know';
                                 _isSelected = true;
                                 screen5();
                               },

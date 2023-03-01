@@ -41,6 +41,7 @@ class _CustomDropDownStateEdu extends State<CustomDropDownEdu> {
                   : widget.controller.text,
               style: const TextStyle(
                 color: Colors.black,
+                fontWeight: FontWeight.bold,
                 fontSize: 22,
               ),
             ),

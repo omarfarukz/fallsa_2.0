@@ -1,6 +1,5 @@
 import 'package:fallsa/screens/screensBM/Quiz/2ndQuiz/quiz3.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz2ScreenBM2 extends StatefulWidget {
@@ -19,9 +18,6 @@ class Quiz2ScreenBM2 extends StatefulWidget {
 class _Quiz2ScreenState extends State<Quiz2ScreenBM2> {
   @override
   Widget build(BuildContext context) {
-    User user;
-    String answer2;
-
     int correctAnswer = widget.correctAnswer;
     // int wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
@@ -111,14 +107,12 @@ class _Quiz2ScreenState extends State<Quiz2ScreenBM2> {
                             QuizButtton(
                               text: 'Betul',
                               function: () {
-                                answer2 = 'True';
                                 screen3();
                               },
                             ),
                             QuizButtton(
                               text: 'Salah',
                               function: () {
-                                answer2 = 'False';
                                 _isSelected = true;
                                 screen3();
                               },
@@ -126,7 +120,6 @@ class _Quiz2ScreenState extends State<Quiz2ScreenBM2> {
                             QuizButtton(
                               text: 'Tidak tahu',
                               function: () {
-                                answer2 = 'Don\'t Know';
                                 _isSelected = true;
                                 screen3();
                               },

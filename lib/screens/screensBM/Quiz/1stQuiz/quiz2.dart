@@ -1,6 +1,5 @@
 import 'package:fallsa/screens/screensBM/Quiz/1stQuiz/quiz3.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz2ScreenBM extends StatefulWidget {
@@ -20,7 +19,6 @@ class Quiz2ScreenBM extends StatefulWidget {
 class _Quiz2ScreenState extends State<Quiz2ScreenBM> {
   @override
   Widget build(BuildContext context) {
-    User user;
     late String answer2;
 
     int correctAnswer = widget.correctAnswer;
@@ -61,12 +59,14 @@ class _Quiz2ScreenState extends State<Quiz2ScreenBM> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Jawab Lagi',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Jawab Lagi',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

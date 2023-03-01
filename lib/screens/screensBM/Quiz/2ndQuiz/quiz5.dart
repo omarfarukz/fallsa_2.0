@@ -1,25 +1,12 @@
 import 'package:fallsa/screens/screensBM/Quiz/2ndQuiz/quiz6.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz5ScreenBM2 extends StatefulWidget {
-  // final answer1;
-  // final answer2;
-  // final answer3;
-  // final answer4;
   final correctAnswer;
   // final int wrongAnswer;
   final quiz1Score;
-  const Quiz5ScreenBM2(
-      {Key? key,
-      // this.answer1,
-      // this.answer2,
-      // this.answer3,
-      // this.answer4,
-      // this.wrongAnswer,
-      this.quiz1Score,
-      this.correctAnswer})
+  const Quiz5ScreenBM2({Key? key, this.quiz1Score, this.correctAnswer})
       : super(key: key);
 
   @override
@@ -29,12 +16,9 @@ class Quiz5ScreenBM2 extends StatefulWidget {
 class _Quiz5ScreenState extends State<Quiz5ScreenBM2> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
     // var wrongAnswer = widget.wrongAnswer;
     bool _isSelected = false;
-
-    String answer5;
 
     screen6() {
       if (_isSelected == false) {
@@ -47,10 +31,6 @@ class _Quiz5ScreenState extends State<Quiz5ScreenBM2> {
         MaterialPageRoute(
           builder: (context) {
             return Quiz6ScreenBM2(
-              // answer1: widget.answer1,
-              // answer2: widget.answer2,
-              // answer3: widget.answer3,
-              // answer4: answer4,
               correctAnswer: correctAnswer,
               quiz1Score: widget.quiz1Score,
               // wrongAnswer: wrongAnswer,
@@ -127,8 +107,6 @@ class _Quiz5ScreenState extends State<Quiz5ScreenBM2> {
                               text:
                                   'Tetap rehat di atas katil. Tidak perlu bangun.',
                               function: () {
-                                answer5 =
-                                    'Stay in bed.There is no need to get up';
                                 _isSelected = true;
                                 screen6();
                               },
@@ -137,15 +115,12 @@ class _Quiz5ScreenState extends State<Quiz5ScreenBM2> {
                               text:
                                   'Duduk di atas katil selama beberapa minit sebelum berdiri. Berdiri sebentar sebelum berjalan.',
                               function: () {
-                                answer5 =
-                                    'Sit up in the bed for a few minutes before standing up. Stand up for a minute before walking';
                                 screen6();
                               },
                             ),
                             QuizButtton(
                               text: 'Ianya adalah biasa, jangan buat apa-apa.',
                               function: () {
-                                answer5 = 'Its common, do nothing about it';
                                 _isSelected = true;
                                 screen6();
                               },

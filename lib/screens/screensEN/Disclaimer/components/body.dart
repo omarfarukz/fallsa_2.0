@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../screensBM/Disclaimer/disclaimer_screen.dart';
 import '../../Guideline/guideline_screen.dart';
 import 'background.dart';
 
@@ -32,14 +33,11 @@ class Body extends HookWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        style:
                         TextStyle(fontSize: 25);
-                        // Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             DisclaimerScreenBM())
-                        // );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DisclaimerScreenBM()));
                       },
                       child: Text(
                         "/  BM",
@@ -123,7 +121,7 @@ class Body extends HookWidget {
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(20.0),
                       ),
-                      primary: Colors.green[400],
+                      backgroundColor: Colors.green[400],
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       textStyle: TextStyle(

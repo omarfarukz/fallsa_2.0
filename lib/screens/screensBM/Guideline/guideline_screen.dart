@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class GuidelineScreenBM extends StatefulWidget {
-  //GuidelineScreen({Key? key}) : super(key: key);
   final url = "https://youtu.be/3zv_Ht4iEew";
 
   @override
@@ -33,12 +32,6 @@ class _GuidelineScreenState extends State<GuidelineScreenBM> {
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void deactivate() {
-    _controller.pause();
-    super.deactivate();
   }
 
   youTube(context) {
@@ -118,7 +111,7 @@ class _GuidelineScreenState extends State<GuidelineScreenBM> {
                         ),
                         ElevatedButton.icon(
                           onPressed: () {
-                            deactivate();
+                            // deactivate();
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -141,7 +134,7 @@ class _GuidelineScreenState extends State<GuidelineScreenBM> {
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0),
                             ),
-                            primary: Colors.green[400],
+                            backgroundColor: Colors.green[400],
                             padding: EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 15),
                           ),

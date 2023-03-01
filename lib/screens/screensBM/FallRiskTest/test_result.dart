@@ -148,8 +148,7 @@ class TimerPageState extends State<TestResultBM> {
   void initState() {
     getUID();
     readGender();
-    CollectionReference fallRisk =
-        FirebaseFirestore.instance.collection('fallRisk');
+
     graphinit();
     Future.delayed(const Duration(milliseconds: 1), () {
       super.initState();
@@ -200,7 +199,6 @@ class TimerPageState extends State<TestResultBM> {
       x_axis = 30;
     }
     late double y_axis;
-    String dotColor = "green";
     if (avarage <= 0) {
       y_axis = 30;
     } else if (avarage > 0 && avarage <= 2) {

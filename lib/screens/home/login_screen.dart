@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fallsa/screens/screensEN/Disclaimer/disclaimer_screen.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../components/loading.dart';
 import 'already_have_an_account.dart';
 import 'home_screen.dart';
@@ -80,10 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         showLoading = false;
+        print(e);
       });
-
-      // _scaffoldKey.currentState!
-      //     .showSnackBar(SnackBar(content: Text(e.message)));//check here
     }
   }
 
@@ -129,17 +125,51 @@ class _LoginScreenState extends State<LoginScreen> {
         print(excption);
       },
       codeSent: (verificationID, resendToken) async {
+        setState(() {
+          showLoading = false;
+        });
         showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: const Text('OTP'),
-                content: Column(
-                  children: [
-                    TextField(
-                      controller: pincontroller,
-                    ),
-                    ElevatedButton(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return AlertDialog(
+                icon: Center(
+                    child: Text(
+                  'OTP Verification',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.green[400]),
+                )),
+                title: const Text(
+                  'Please wait for the automatic OTP Verification.\n \nIf automatic OTP is not working within 1 Min, Please manually enter the OTP you received as a message.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+                content: Container(
+                  padding: EdgeInsets.zero,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    controller: pincontroller,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 2)),
+                        hintStyle: TextStyle(color: Colors.green[300]),
+                        hintText: "Enter the 6 digit OTP here"),
+                  ),
+                ),
+                actions: [
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green[400],
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 20),
+                          textStyle: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          )),
                       onPressed: () async {
                         var smscode = pincontroller.text;
                         setState(() {
@@ -184,12 +214,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       },
-                      child: const Text("Submit"),
+                      child: const Text(
+                        "Submit",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ],
-                ),
-              );
-            });
+                  ),
+                ]);
+          },
+        );
       },
       codeAutoRetrievalTimeout: (String verificationID) {},
     );
@@ -275,9 +308,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.fromLTRB(70, 0, 70, 0),
                   child: ElevatedButton(
                     onPressed: () {
-                      // setState(() {
-                      //   isLoading = true;
-                      // });
+                      setState(() {
+                        showLoading = true;
+                      });
                       phoneAuth();
                     },
                     // ignore: sort_child_properties_last
@@ -292,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        primary: Colors.green[400],
+                        backgroundColor: Colors.green[400],
                         padding: const EdgeInsets.symmetric(
                             horizontal: 0, vertical: 12),
                         textStyle: const TextStyle(

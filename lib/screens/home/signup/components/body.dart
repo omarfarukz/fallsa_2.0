@@ -25,8 +25,6 @@ class Body extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController email = useTextEditingController(text: "");
-    final TextEditingController password = useTextEditingController(text: "");
     final TextEditingController name = useTextEditingController(text: "");
     final TextEditingController ic = useTextEditingController(text: "");
     final TextEditingController phoneNumber =
@@ -37,7 +35,6 @@ class Body extends HookWidget {
     final TextEditingController address1 = useTextEditingController(text: "");
     final TextEditingController address2 = useTextEditingController(text: "");
     final TextEditingController postCode = useTextEditingController(text: "");
-    TextEditingController dob = useTextEditingController(text: "");
     final List<String> states = [
       "Johor",
       "Kedah",
@@ -65,13 +62,9 @@ class Body extends HookWidget {
     ];
 
     final auth = FirebaseAuth.instance;
-    final firebase = FirebaseFirestore.instance;
     final formKey = useMemoized(() => GlobalKey<FormState>());
     // final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final Size size = MediaQuery.of(context).size;
-    final formkey1 = GlobalKey<FormState>();
-    CollectionReference details =
-        FirebaseFirestore.instance.collection('userDetails');
     TextEditingController pincontroller = TextEditingController();
 
     phoneAuth() async {
@@ -197,12 +190,10 @@ class Body extends HookWidget {
               RoundedInputField(
                 name,
                 hintText: "Full name",
-                icon: Icons.person,
               ),
               RoundedInputField(
                 ic,
                 hintText: "IC number",
-                icon: Icons.card_membership,
               ),
               CustomDropDown(
                 colors: Colors.black,
@@ -220,24 +211,20 @@ class Body extends HookWidget {
                 address1,
                 hintText: "Address 1",
                 inputType: InputFieldType.address1,
-                icon: Icons.location_on,
               ),
               RoundedInputField(
                 address2,
                 hintText: "Address 2",
                 inputType: InputFieldType.address2,
-                icon: Icons.location_on,
               ),
               RoundedInputField(
                 phoneNumber,
                 hintText: "Phone Number",
                 inputType: InputFieldType.phone,
-                icon: Icons.phone,
               ),
               RoundedInputField(
                 postCode,
                 hintText: "Post Code",
-                icon: Icons.local_post_office_sharp,
               ),
               CustomDropDownStates(
                 colors: Colors.black,

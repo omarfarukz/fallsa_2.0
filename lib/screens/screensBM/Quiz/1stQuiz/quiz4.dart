@@ -62,12 +62,14 @@ class _Quiz4ScreenState extends State<Quiz4ScreenBM> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Jawab Lagi',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Jawab Lagi',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

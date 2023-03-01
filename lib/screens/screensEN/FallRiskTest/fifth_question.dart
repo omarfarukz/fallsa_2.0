@@ -1,9 +1,6 @@
 import 'package:fallsa/screens/screensEN/FallRiskTest/components/background.dart';
 import 'package:fallsa/screens/screensEN/FallRiskTest/report.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'components/No Need/fifth_question_body.dart';
 
 class FifthQuestion extends StatefulWidget {
   final int walkingAid;

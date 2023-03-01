@@ -27,8 +27,6 @@ bool isLoading = false;
 class Body extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController email = useTextEditingController(text: "");
-    final TextEditingController password = useTextEditingController(text: "");
     final TextEditingController name = useTextEditingController(text: "");
     final TextEditingController ic = useTextEditingController(text: "");
     final TextEditingController phoneNumber =
@@ -39,7 +37,6 @@ class Body extends HookWidget {
     final TextEditingController address1 = useTextEditingController(text: "");
     final TextEditingController address2 = useTextEditingController(text: "");
     final TextEditingController postCode = useTextEditingController(text: "");
-    TextEditingController dob = useTextEditingController(text: "");
     final List<String> states = [
       "Johor",
       "Kedah",
@@ -67,11 +64,9 @@ class Body extends HookWidget {
     ];
 
     final _auth = FirebaseAuth.instance;
-    final _firebase = FirebaseFirestore.instance;
     final _formKey = useMemoized(() => GlobalKey<FormState>());
     // final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final Size size = MediaQuery.of(context).size;
-    final _formkey1 = GlobalKey<FormState>();
     CollectionReference details =
         FirebaseFirestore.instance.collection('userDetails');
     var icm;
@@ -183,7 +178,6 @@ class Body extends HookWidget {
       );
     }
 
-    String title;
     return Background(
       child: SingleChildScrollView(
         child: Form(
@@ -201,12 +195,10 @@ class Body extends HookWidget {
               RoundedInputField(
                 name,
                 hintText: "Full name",
-                icon: Icons.person,
               ),
               RoundedInputField(
                 ic,
                 hintText: "IC number",
-                icon: Icons.numbers,
               ),
 
               // Container(
@@ -250,24 +242,20 @@ class Body extends HookWidget {
                 address1,
                 hintText: "Address 1",
                 inputType: InputFieldType.address1,
-                icon: Icons.place_outlined,
               ),
               RoundedInputField(
                 address2,
                 hintText: "Address 2",
                 inputType: InputFieldType.address2,
-                icon: Icons.place,
               ),
               RoundedInputField(
                 phoneNumber,
                 hintText: "Phone Number",
                 inputType: InputFieldType.phone,
-                icon: Icons.place,
               ),
               RoundedInputField(
                 postCode,
                 hintText: "Post Code",
-                icon: Icons.local_post_office,
               ),
               CustomDropDownStates(
                 colors: Colors.black,

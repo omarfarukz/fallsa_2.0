@@ -68,7 +68,7 @@ class _SecondAttemptBMState extends State<SecondAttemptBM> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.fromLTRB(12, 15, 12, 15),
           textStyle: TextStyle(
             fontSize: 30,

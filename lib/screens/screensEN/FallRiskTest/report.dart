@@ -126,7 +126,7 @@ class ReportState extends State<Report> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
           textStyle: TextStyle(
             fontSize: 30,
@@ -221,9 +221,6 @@ class ReportState extends State<Report> {
     Future.delayed(Duration(seconds: 1), () {
       uploadData();
     });
-
-    CollectionReference fallRisk =
-        FirebaseFirestore.instance.collection('fallRisk');
     super.initState();
   }
 
@@ -517,7 +514,7 @@ class ReportState extends State<Report> {
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(20.0),
                           ),
-                          primary: Colors.green[400],
+                          backgroundColor: Colors.green[400],
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 15),
                         ),
@@ -554,7 +551,7 @@ class ReportState extends State<Report> {
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(20.0),
                           ),
-                          primary: Colors.green[400],
+                          backgroundColor: Colors.green[400],
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 15),
                         ),

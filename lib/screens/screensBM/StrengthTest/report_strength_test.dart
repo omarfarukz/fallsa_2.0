@@ -108,7 +108,7 @@ class ReportState extends State<ReportSTBM> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
           textStyle: TextStyle(
             fontSize: 30,

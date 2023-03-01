@@ -1,28 +1,12 @@
 import 'package:fallsa/screens/screensBM/Quiz/2ndQuiz/quiz7.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz6ScreenBM2 extends StatefulWidget {
-  // final answer1;
-  // final answer2;
-  // final answer3;
-  // final answer4;
-  // final answer5;
   final correctAnswer;
   final quiz1Score;
-  // final wrongAnswer;
 
-  const Quiz6ScreenBM2(
-      {Key? key,
-      // this.answer1,
-      // this.answer2,
-      // this.answer3,
-      // this.answer4,
-      // this.answer5,
-      // this.wrongAnswer,
-      this.quiz1Score,
-      this.correctAnswer})
+  const Quiz6ScreenBM2({Key? key, this.quiz1Score, this.correctAnswer})
       : super(key: key);
 
   @override
@@ -32,9 +16,8 @@ class Quiz6ScreenBM2 extends StatefulWidget {
 class _Quiz6ScreenState extends State<Quiz6ScreenBM2> {
   @override
   Widget build(BuildContext context) {
-    User user;
     var correctAnswer = widget.correctAnswer;
-    // var wrongAnswer = widget.wrongAnswer;
+
     bool _isSelected = false;
 
     String answer6;
