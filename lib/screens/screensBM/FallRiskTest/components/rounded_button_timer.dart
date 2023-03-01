@@ -15,7 +15,6 @@ class RoundedButtonTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 0),
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),

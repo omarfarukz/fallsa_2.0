@@ -44,11 +44,6 @@ class _FirstAttemptBMState extends State<FirstAttemptBM> {
   }
 
   Widget floatingActionButtonRound(String text, VoidCallback callback) {
-    TextStyle roundTextStyle = const TextStyle(
-        fontSize: 22.0,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontFamily: "Bebas Neue");
     watch.isRunning ? text = 'tamat' : text = 'mulakan';
     return new IconButton(
       icon: Image.asset("assets/images/" + text + ".png"),
@@ -72,7 +67,7 @@ class _FirstAttemptBMState extends State<FirstAttemptBM> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(150),
           ),
-          primary: Colors.red,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.fromLTRB(12, 15, 15, 12),
           textStyle: TextStyle(
             fontSize: 23,

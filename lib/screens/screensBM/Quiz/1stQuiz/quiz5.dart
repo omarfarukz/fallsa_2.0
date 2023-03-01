@@ -1,6 +1,5 @@
 import 'package:fallsa/screens/screensBM/Quiz/1stQuiz/quiz6.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz5ScreenBM extends StatefulWidget {
@@ -67,12 +66,14 @@ class _Quiz5ScreenState extends State<Quiz5ScreenBM> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Jawab Lagi',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Jawab Lagi',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

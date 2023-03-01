@@ -17,7 +17,7 @@ enum InputFieldType {
 
 class RoundedInputField extends StatelessWidget {
   final String hintText;
-  final IconData icon;
+  // final IconData icon;
   final TextEditingController controller;
   final InputFieldType inputType;
 
@@ -25,7 +25,6 @@ class RoundedInputField extends StatelessWidget {
     this.controller, {
     Key? key,
     required this.hintText,
-    required this.icon,
     this.inputType = InputFieldType.regular,
   }) : super(key: key);
 
@@ -44,16 +43,13 @@ class RoundedInputField extends StatelessWidget {
           fontSize: 22.0,
         ),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(-35, 0, 0, 0),
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           errorMaxLines: 3,
-          icon: Icon(
-            icon,
-            color: Colors.black,
-          ),
           hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 22.0,
             color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
           border: InputBorder.none,
         ),

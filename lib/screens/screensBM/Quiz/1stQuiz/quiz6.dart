@@ -1,27 +1,11 @@
 import 'package:fallsa/screens/screensBM/Quiz/1stQuiz/quiz7.dart';
 import 'package:fallsa/screens/screensBM/Quiz/components/quizbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Quiz6ScreenBM extends StatefulWidget {
-  // final answer1;
-  // final answer2;
-  // final answer3;
-  // final answer4;
-  // final answer5;
   final correctAnswer;
-  // final wrongAnswer;
 
-  const Quiz6ScreenBM(
-      {Key? key,
-      // this.answer1,
-      // this.answer2,
-      // this.answer3,
-      // this.answer4,
-      // this.answer5,
-      // this.wrongAnswer,
-      this.correctAnswer})
-      : super(key: key);
+  const Quiz6ScreenBM({Key? key, this.correctAnswer}) : super(key: key);
 
   @override
   _Quiz6ScreenState createState() => _Quiz6ScreenState();
@@ -58,23 +42,21 @@ class _Quiz6ScreenState extends State<Quiz6ScreenBM> {
           ),
           actions: [
             TextButton(
-              // textColor: Colors.black,
-              // color: Colors.green[400],
-              // minWidth: 300,
               style: TextButton.styleFrom(
                 backgroundColor: Colors.green[400],
                 foregroundColor: Colors.black,
               ),
-
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
-                'Jawab Lagi',
-                style: new TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: Center(
+                child: Text(
+                  'Jawab Lagi',
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

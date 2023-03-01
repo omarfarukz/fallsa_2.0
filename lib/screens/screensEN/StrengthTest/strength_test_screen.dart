@@ -1,9 +1,7 @@
 import 'dart:math' as math;
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:fallsa/screens/screensEN/StrengthTest/report_strength_test.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/text_field_container.dart';
 
 class CountDownTimer extends StatefulWidget {
@@ -21,8 +19,6 @@ class _CountDownTimerState extends State<CountDownTimer>
 
   TextEditingController score = TextEditingController();
   bool donetest = false;
-
-  final player = AudioCache();
 
   @override
   void initState() {
@@ -216,7 +212,7 @@ class _CountDownTimerState extends State<CountDownTimer>
                                               _playFile();
 
                                               Future.delayed(
-                                                  Duration(milliseconds: 1500),
+                                                  Duration(milliseconds: 1),
                                                   () {
                                                 controller.reverse(
                                                     from:

@@ -58,7 +58,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime;
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       body: BackgroundGeneral(

@@ -64,7 +64,7 @@ class Body extends HookWidget {
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(20.0),
                       ),
-                      primary: Colors.green[700],
+                      backgroundColor: Colors.green[700],
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       textStyle: TextStyle(
@@ -95,7 +95,7 @@ class Body extends HookWidget {
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(20.0),
                       ),
-                      primary: Colors.green[700],
+                      backgroundColor: Colors.green[700],
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       textStyle: TextStyle(

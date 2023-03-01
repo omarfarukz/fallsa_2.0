@@ -26,9 +26,6 @@ class _FallRiskVideoState extends State<FallRiskVideoBM> {
   }
 
   int _selectedIndex = 1;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[];
   void _onItemTapped(int index) {
     if (_selectedIndex == 1) {
       setState(() {
@@ -209,7 +206,7 @@ class _FallRiskVideoState extends State<FallRiskVideoBM> {
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0),
                     ),
-                    primary: Colors.green[400],
+                    backgroundColor: Colors.green[400],
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   ),
                   onPressed: () {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../MainMenu/nav.dart';
 import 'first_attempt.dart';
 
@@ -16,7 +15,6 @@ class FallRiskIntroductionBM extends StatefulWidget {
 
 class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
   bool audioIsOn = false;
-  late YoutubePlayerController _controller;
   final player = AudioPlayer();
   void _playFile() {
     setState(() {
@@ -36,9 +34,6 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
   }
 
   int _selectedIndex = 1;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[];
   void _onItemTapped(int index) {
     _stopFile();
     if (_selectedIndex == 1) {
@@ -436,7 +431,7 @@ class _FallRiskIntroductionState extends State<FallRiskIntroductionBM> {
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0),
                     ),
-                    primary: Colors.green[400],
+                    backgroundColor: Colors.green[400],
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   ),
                   onPressed: () {
